@@ -12,25 +12,27 @@ public class NumberWizard : MonoBehaviour
     Debug.Log("Pick a number between " + min + " and " + max + ", don't tell me what it is ...");
     Debug.Log("Tell me if your number is higher or lower than " + guess + "?");
     Debug.Log("Push Up = Higher, Push Down = Lower, Push Enter = Correct");
+
+    max += 1; // this ensures the max value can be included in guesses
   }
 
   void Update()
   {
     if(Input.GetKeyDown(KeyCode.UpArrow))
     {
-      Debug.Log("Up arrow key was pressed.");
       min = guess;
-      Debug.Log(guess);
+      guess = (max + min) / 2;
+      Debug.Log("Is it higher or lower than " + guess + "?");
     }
     else if(Input.GetKeyDown(KeyCode.DownArrow))
     {
-      Debug.Log("Down arrow key was pressed.");
       max = guess;
-      Debug.Log(guess);
+      guess = (max + min) / 2;
+      Debug.Log("Is it higher or lower than " + guess + "?");
     }
     else if(Input.GetKeyDown(KeyCode.Return))
     {
-      Debug.Log("Return key was pressed.");
+      Debug.Log("I guessed correct :)");
     }
   }
 }
