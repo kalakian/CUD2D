@@ -2,12 +2,21 @@
 
 public class NumberWizard : MonoBehaviour
 {
-  int min = 1;
-  int max = 1000;
-  int guess = 500;
+  int min;
+  int max;
+  int guess;
 
   void Start()
   {
+    StartGame();
+  }
+
+  void StartGame()
+  {
+    min = 1;
+    max = 1000;
+    guess = 500;
+
     Debug.Log("Welcome to Number Wizard");
     Debug.Log("Pick a number between " + min + " and " + max + ", don't tell me what it is ...");
     Debug.Log("Tell me if your number is higher or lower than " + guess + "?");
@@ -21,18 +30,23 @@ public class NumberWizard : MonoBehaviour
     if(Input.GetKeyDown(KeyCode.UpArrow))
     {
       min = guess;
-      guess = (max + min) / 2;
-      Debug.Log("Is it higher or lower than " + guess + "?");
+      NextGuess();
     }
     else if(Input.GetKeyDown(KeyCode.DownArrow))
     {
       max = guess;
-      guess = (max + min) / 2;
-      Debug.Log("Is it higher or lower than " + guess + "?");
+      NextGuess();
     }
     else if(Input.GetKeyDown(KeyCode.Return))
     {
       Debug.Log("I guessed correct :)");
+      StartGame();
     }
+  }
+
+  void NextGuess()
+  {
+    guess = (max + min) / 2;
+    Debug.Log("Is it higher or lower than " + guess + "?");
   }
 }
